@@ -1,0 +1,25 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "no-unused-expression": true,
+    "prefer-const": true,
+    "no-duplicate-variable": true,
+    "trailing-comma": [
+      true,
+      {
+        "singleline": "never",
+        "multiline": {
+          "objects": "never",
+          "arrays": "never",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        }
+      }
+    ],
+    "no-console": false,
+    "no-unused-variable": true
+  },
+  "rulesDirectory": []
+}

@@ -1,0 +1,147 @@
+:root {
+  --light-blue: #9ad0ec;
+  --light-gray: #eee;
+  --red: #ef6d6d;
+}
+
+.container {
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  background-color: var(--light-blue);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 800px;
+  max-height: 800px;
+  background-color: white;
+  border-radius: 4px;
+
+  outline: none;
+
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  text-align: center;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1rem;
+}
+
+.tasks {
+  flex: 1;
+  margin: 1rem 0;
+
+  list-style: none;
+}
+
+.task-item {
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 8px;
+}
+
+.task-item:nth-child(2n + 1) {
+  background-color: var(--light-gray);
+}
+
+.task-item--done {
+  text-decoration: line-through;
+}
+
+.task-item--checkbox {
+  margin-left: 8px;
+}
+
+.bottom-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-task--box {
+  display: flex;
+  align-items: baseline;
+
+  width: 100%;
+}
+
+.input-add {
+  flex: 1;
+  margin-right: 1rem;
+  border: none;
+  outline: none;
+
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
+  font-size: 1rem;
+
+  position: relative;
+}
+
+.input-add::placeholder {
+  position: absolute;
+  bottom: 4px;
+  font-size: 1rem;
+}
+
+.btn {
+  cursor: pointer;
+  width: fit-content;
+  border: none;
+
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+.btn.btn-add {
+  background-color: var(--red);
+}
+
+.btn.btn-remove {
+  color: var(--red);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.task-stats--box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+
+  background-color: #eee;
+  margin-top: 1rem;
+}
+
+.task-stats > span {
+  margin-left: 8px;
+}
+
+.task-stats--done::before {
+  content: '\1F7E2';
+}
+
+.task-stats--pending::before {
+  content: '\1F7E1';
+}
+
+.task-stats--total::before {
+  content: '\1F7E3';
+}
