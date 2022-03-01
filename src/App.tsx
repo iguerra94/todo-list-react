@@ -1,60 +1,17 @@
-import { useState, useMemo, useRef } from 'react'
 import './App.css'
-import Utils from './utils/Utils'
-
-interface Task {
-  id: string
-  description: string
-  done: boolean
-}
+import useTasks from './hooks/useTasks'
 
 const App: React.FC = () => {
-  const newTaskInput = useRef<HTMLInputElement>(null)
-
-  // List of tasks
-  const [tasks, setTasks] = useState<Task[]>([])
-
-  // Number of pending tasks
-  const pendingTasks = useMemo(() => {
-    return tasks.filter((task) => task.done === false).length
-  }, [tasks])
-
-  // Number of done tasks
-  const doneTasks = useMemo(() => {
-    return tasks.filter((task) => task.done === true).length
-  }, [tasks])
-
-  function addTask() {
-    if (!newTaskInput.current?.value) return
-
-    const newTask = {
-      id: Utils.uuidv4(),
-      description: newTaskInput.current?.value || '',
-      done: false
-    }
-
-    const _tasks = [...tasks, newTask]
-    setTasks(_tasks)
-
-    newTaskInput.current!.value = ''
-  }
-
-  function toggleDoneState(taskId: string) {
-    const _tasks = tasks.map((task) =>
-      task.id !== taskId
-        ? task
-        : {
-            ...task,
-            done: !task.done
-          }
-    )
-    setTasks(_tasks)
-  }
-
-  function removeTask(taskId: string) {
-    const _tasks = tasks.filter((task) => task.id !== taskId)
-    setTasks(_tasks)
-  }
+  const {
+    newTaskDescription,
+    setNewTaskDescription,
+    tasks,
+    pendingTasks,
+    doneTasks,
+    addTask,
+    toggleDoneState,
+    removeTask
+  } = useTasks()
 
   return (
     <div className="container">
@@ -91,8 +48,10 @@ const App: React.FC = () => {
         <div className="bottom-content">
           <div className="add-task--box">
             <input
-              ref={newTaskInput}
               type="text"
+              value={newTaskDescription}
+              onChange={(evt) => setNewTaskDescription(evt.currentTarget.value)}
+              data-testid="new-task-description"
               placeholder="Añade la descripción de la tarea aquí..."
               className="input-add"
             />
